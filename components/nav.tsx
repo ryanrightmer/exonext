@@ -22,6 +22,11 @@ const Nav = () => (
           <a>Search</a>
         </Link>
       </li>
+      <li>
+        <Link href='/exoplanet/test-planet'>
+          <a>Search</a>
+        </Link>
+      </li>
       {links.map(({ key, href, label }) => (
         <li key={key}>
           <a href={href}>{label}</a>
