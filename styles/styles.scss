@@ -2,7 +2,11 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 @import "~bootstrap/scss/bootstrap";
+@import "./variable.scss";
 
+.hero {
+  color : $primary-color;
+} 
 $font-size: 100px;
 .hero {
   width: 100%;
