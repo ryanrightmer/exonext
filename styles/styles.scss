@@ -1,0 +1,22 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+@import "~bootstrap/scss/bootstrap";
+
+$font-size: 100px;
+.hero {
+  width: 100%;
+  color: #333;
+}
+.title {
+  margin: 0;
+  width: 100%;
+  padding-top: 80px;
+  line-height: 1.15;
+  font-size: 48px;
+}
+.searchEntry {
+  border: 1px black solid;
+  margin: 5px;
+  cursor: pointer;
+}
