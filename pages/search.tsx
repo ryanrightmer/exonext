@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
 import { BasicSearchResult } from '../store/search/search.types';
+import Link from 'next/link';
 
 type Props = {
   data: BasicSearchResult[];
@@ -56,17 +57,27 @@ const Search = (props: Props) => {
         <Row>
           <Col md="1" />
           <Col md="10">
-            <Row className="searchHeader">
-              <Col>Distance in Parsecs</Col>
-              <Col>Star Name</Col>
-            </Row>
-            {
-              props.data.map(x =>
-                <Row key={x.pl_name} className="searchEntry">
-                  <Col>{x.st_dist} Parsecs</Col>
-                  <Col>{x.pl_hostname}</Col>
-                </Row>)
-            }
+            <table className="starsInfoTable">
+              <tr>
+                <th></th>
+                <th>Distance in Parsecs</th>
+                <th>Star Name</th>
+                <th></th>
+              </tr>
+              {
+                props.data.map((x, index) =>
+                  <tr key={x.pl_name} className="searchEntry">
+                    <td>{index + 1}.</td>
+                    <td>{x.st_dist} Parsecs</td>
+                    <td>{x.pl_hostname}</td>
+                    <td>
+                      <Link href='/exoplanet/test-planet'>
+                        <a>Details</a>
+                      </Link>
+                    </td>
+                  </tr>)
+              }
+            </table>
           </Col>
           <Col md="1" />
         </Row>
