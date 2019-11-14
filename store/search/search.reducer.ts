@@ -8,7 +8,7 @@ import {
 import { stat } from "fs";
 
 export const initialState: SearchState = {
-  searchResults: [{ st_dist: 0, pl_hostname: "Sol", pl_name: "Earth" }],
+  searchResults: [],
   filter: {
     minDist: 0,
     maxDist: 10,

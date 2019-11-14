@@ -20,6 +20,7 @@ export type BasicSearchResult = {
   st_dist: number;
   pl_hostname: string;
   pl_name: string;
+  st_spstr: string;
 };
 
 type Filter = {

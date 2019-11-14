@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import fetch from 'isomorphic-unfetch'
 import Layout from '../components/layout'
-import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Label } from 'reactstrap';
 import '../styles/styles.scss'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector, useStore } from 'react-redux';
@@ -16,17 +16,17 @@ type Props = {
 
 const Search = (props: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [stellarClass, setStellarClass] = useState(StellarClass.Any);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(search(StellarClass.Any, 0, 5));
   }, []);
-  
+  const beginSearch = () => {
+    dispatch(search(stellarClass, 0, 100));
+  }
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
   const entries = useSelector((state: AppState) => state.search.searchResults);
-
-  console.log(entries)
-  console.log(entries);
   return (
     <Layout>
       <Head>
@@ -41,21 +41,25 @@ const Search = (props: Props) => {
         <Row>
           <Col md="2">Distance</Col>
           <Col md="2">
-            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+            <Label>Stellar Class</Label>
+            <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
               <DropdownToggle caret>
-                Dropdown
+                {stellarClass === StellarClass.Any ? "Any" : stellarClass}
                 </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem header>Header</DropdownItem>
-                <DropdownItem>Some Action</DropdownItem>
-                <DropdownItem disabled>Action (disabled)</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.Any)}>Any</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Foo Action</DropdownItem>
-                <DropdownItem>Bar Action</DropdownItem>
-                <DropdownItem>Quo Action</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.A)}>{StellarClass.A}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.B)}>{StellarClass.B}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.F)}>{StellarClass.F}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.G)}>{StellarClass.G}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.K)}>{StellarClass.K}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.M)}>{StellarClass.M}</DropdownItem>
+                <DropdownItem onClick={() => setStellarClass(StellarClass.O)}>{StellarClass.O}</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </Col>
+          <Col md="2"><Button onClick={() => beginSearch()}>Search</Button></Col>
         </Row>
         <Row>
           <Col md="1" />
@@ -69,6 +73,7 @@ const Search = (props: Props) => {
                 <Row key={x.pl_name} className="searchEntry">
                   <Col>{x.st_dist} Parsecs</Col>
                   <Col>{x.pl_hostname}</Col>
+                  <Col>{x.st_spstr}</Col>
                 </Row>) : null
             }
           </Col>

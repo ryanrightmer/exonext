@@ -20,11 +20,14 @@ export const search = (
     getState: GetAppState
   ) => {
     console.log("SEARCHING");
-    const columns = "&select=st_dist,pl_hostname,pl_name";
-    const filter = `&where=st_dist>${minDist}%20and%20st_dist<${maxDist}&20and%20st_spstr%20like%20%27%25${stellarClass}%25%27`;
+    const columns = "&select=st_dist,pl_hostname,pl_name,st_spstr";
+    const filter = `&where=st_dist>${minDist}%20and%20st_dist<${maxDist}%20and%20st_spstr%20like%20%27%25${stellarClass}%25%27`;
     const order = "&order=st_dist";
 
-    const res = await fetch(`${baseUrl}${columns}${filter}${order}`);
+    const searchUrl = `${baseUrl}${columns}${filter}${order}`;
+
+    console.log(searchUrl);
+    const res = await fetch(searchUrl);
     const data: BasicSearchResult[] = await res.json();
 
     dispatch({
