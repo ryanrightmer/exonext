@@ -2,7 +2,18 @@ export interface SearchState {
   searchResults: BasicSearchResult[]
 }
 
-export const SEARCH = "SEARCH";
+export const SEARCH = "SEARCH"; 
+
+export enum StellarClass {
+  Any,
+  O,
+  B,
+  A,
+  F,
+  G,
+  K,
+  M
+}
 
 export type BasicSearchResult = {
   st_dist: number,
@@ -12,7 +23,11 @@ export type BasicSearchResult = {
 
 interface SearchAction {
   type: typeof SEARCH;
-  searchString: string;
+  filter: {
+    minDist: number
+    maxDist: number
+    stellarClass: StellarClass
+  };
 }
 
 export type SearchActionTypes = SearchAction;

@@ -6,22 +6,23 @@ import '../styles/styles.scss'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../store/store';
-import { BasicSearchResult } from '../store/search/search.types';
+import { BasicSearchResult, StellarClass } from '../store/search/search.types';
+import { search } from '../store/search/search.actions';
 
 type Props = {
   data: BasicSearchResult[];
 }
 
 const Search = (props: Props) => {
-  console.log(props.data.length)
   const [dropdownOpen, setDropdownOpen] = useState(false);
   useEffect(() => {
-    
+    search(StellarClass.Any, 0, 5);
   }, []);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
   const entries = useSelector((state: AppState) => state.search.searchResults);
 
+  console.log(entries)
   console.log(entries);
   return (
     <Layout>
@@ -61,11 +62,11 @@ const Search = (props: Props) => {
               <Col>Star Name</Col>
             </Row>
             {
-              props.data.map(x =>
+              entries ? entries.map(x =>
                 <Row key={x.pl_name} className="searchEntry">
                   <Col>{x.st_dist} Parsecs</Col>
                   <Col>{x.pl_hostname}</Col>
-                </Row>)
+                </Row>) : null
             }
           </Col>
           <Col md="1" />
@@ -75,13 +76,11 @@ const Search = (props: Props) => {
   );
 }
 
-Search.getInitialProps = async function (): Promise<Props> {
-  const res = await fetch('https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?&table=exoplanets&format=json&select=st_dist,pl_hostname,pl_name&order=st_dist');
-  const data: BasicSearchResult[] = await res.json();
+// Search.getInitialProps = async function (): Promise<Props> {
+  
 
-  console.log(`Show data fetched. Count: ${data.length}`);
 
-  return { data };
-};
+//   // return { data };
+// };
 
 export default Search;
