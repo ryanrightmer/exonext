@@ -32,19 +32,21 @@ const Nav = () => (
       }
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
+        background: #e6e6e6;
       }
       nav > ul {
-        padding: 4px 16px;
+        padding: 22px 16px;
+        margin-bottom: 40px;
       }
       li {
         display: flex;
-        padding: 6px 8px;
+        padding: 0 30px;
       }
       a {
         color: #067df7;
         text-decoration: none;
-        font-size: 13px;
+        font-size: 20px;
       }
     `}</style>
   </nav>

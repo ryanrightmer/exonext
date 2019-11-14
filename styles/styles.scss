@@ -6,11 +6,12 @@
 
 .hero {
   color : $primary-color;
-} 
-$font-size: 100px;
-.hero {
-  width: 100%;
-  color: #333;
+  img {
+    padding-bottom: 20px;
+  }
+  a {
+    padding-right: 10px;
+  }
 }
 .title {
   margin: 0;
