@@ -4,12 +4,9 @@ import Layout from '../components/layout'
 import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import '../styles/styles.scss'
 import { useEffect, useState } from 'react';
-
-type BasicSearchResult = {
-  st_dist: number,
-  pl_hostname: string,
-  pl_name: string,
-}
+import { useSelector } from 'react-redux';
+import { AppState } from '../store/store';
+import { BasicSearchResult } from '../store/search/search.types';
 
 type Props = {
   data: BasicSearchResult[];
@@ -23,7 +20,9 @@ const Search = (props: Props) => {
   }, []);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
+  const entries = useSelector((state: AppState) => state.search.searchResults);
 
+  console.log(entries);
   return (
     <Layout>
       <Head>
