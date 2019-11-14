@@ -93,20 +93,22 @@ const Search = (props: Props) => {
                 <th></th>
                 <th>Distance in Parsecs</th>
                 <th>Star Name</th>
+                <th>Stellar Class</th>
                 <th></th>
               </tr>
               {
-                props.data.map((x, index) =>
+                entries ? entries.map((x, index) =>
                   <tr key={x.pl_name} className="searchEntry">
                     <td>{index + 1}.</td>
                     <td>{x.st_dist} Parsecs</td>
                     <td>{x.pl_hostname}</td>
+                    <td>{x.st_spstr}</td>
                     <td>
                       <Link href='/exoplanet/test-planet'>
                         <a>Details</a>
                       </Link>
                     </td>
-                  </tr>)
+                  </tr>) : null
               }
             </table>
           </Col>
