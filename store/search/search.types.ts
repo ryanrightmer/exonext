@@ -1,18 +1,38 @@
 export interface SearchState {
-  searchResults: BasicSearchResult[]
+  searchResults: BasicSearchResult[];
+  filter: Filter;
 }
 
 export const SEARCH = "SEARCH";
 
-export type BasicSearchResult = {
-  st_dist: number,
-  pl_hostname: string,
-  pl_name: string,
+export enum StellarClass {
+  Any = "",
+  O = "O",
+  B = "B",
+  A = "A",
+  F = "F",
+  G = "G",
+  K = "K",
+  M = "M"
 }
+
+export type BasicSearchResult = {
+  st_dist: number;
+  pl_hostname: string;
+  pl_name: string;
+  st_spstr: string;
+};
+
+type Filter = {
+  minDist: number;
+  maxDist: number;
+  stellarClass: StellarClass;
+};
 
 interface SearchAction {
   type: typeof SEARCH;
-  searchString: string;
+  filter: Filter;
+  searchResults: BasicSearchResult[];
 }
 
 export type SearchActionTypes = SearchAction;
