@@ -5,28 +5,35 @@ import '../styles/styles.scss'
 import Markdown from 'react-markdown'
 import { Container } from 'reactstrap'
 
-const input = '# Welcome to Exoplanet website.\n\n<hr> \n\n <img src="https://images.unsplash.com/photo-1538370965046-79c0d6907d47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" width="900" height="500"/>\n\n #### Top 5 Links\n\n[link 1](https://google.com "link 1")\n[link 2](https://google.com)\n[link 3](https://google.com)\n[link 4](https://google.com)\n[link 5](https://google.com)';
+type Props = {
+  data: {
+    cmsContent: string,
+  };
+}
 
-const Home = () => (
+const Home = (props: Props) => (
   <Layout>
     <Head>
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
     </Head>
     <Container className="hero">
-      <Markdown className="heroMarkdown" source={input} escapeHtml={false} />
+      <Markdown className="heroMarkdown" source={props.data.cmsContent} escapeHtml={false} />
     </Container>
 
       <style jsx>{`
       .hero {
         width: 100%;
       }
-    `}</style>
-
-    
-
-    
+    `}</style>   
   </Layout>
 )
+
+Home.getInitialProps = async function (): Promise<Props> {
+  const res = await fetch('http://demo2027889.mockable.io/');
+  const data= await res.json();
+
+  return { data };
+};
 
 export default Home

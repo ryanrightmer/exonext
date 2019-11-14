@@ -9,6 +9,7 @@ import { Dispatch } from 'redux';
 import { AppState } from '../store/store';
 import { SearchActionTypes, BasicSearchResult, StellarClass } from '../store/search/search.types';
 import { search } from '../store/search/search.actions';
+import Link from 'next/link';
 
 type Props = {
   data: BasicSearchResult[];
@@ -83,19 +84,31 @@ const Search = (props: Props) => {
             
             <Col md="2"></Col>
           </Col>
-          <Col md="8">
-            <Row className="searchHeader">
-              <Col>Distance in Parsecs</Col>
-              <Col>Star Name</Col>
-            </Row>
-            {
-              entries ? entries.map(x =>
-                <Row key={x.pl_name} className="searchEntry">
-                  <Col>{x.st_dist} Parsecs</Col>
-                  <Col>{x.pl_hostname}</Col>
-                  <Col>{x.st_spstr}</Col>
-                </Row>) : null
-            }
+        </Row>
+        <Row>
+          <Col md="1" />
+          <Col md="10">
+            <table className="starsInfoTable">
+              <tr>
+                <th></th>
+                <th>Distance in Parsecs</th>
+                <th>Star Name</th>
+                <th></th>
+              </tr>
+              {
+                props.data.map((x, index) =>
+                  <tr key={x.pl_name} className="searchEntry">
+                    <td>{index + 1}.</td>
+                    <td>{x.st_dist} Parsecs</td>
+                    <td>{x.pl_hostname}</td>
+                    <td>
+                      <Link href='/exoplanet/test-planet'>
+                        <a>Details</a>
+                      </Link>
+                    </td>
+                  </tr>)
+              }
+            </table>
           </Col>
         </Row>
       </Container>
