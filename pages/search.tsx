@@ -4,9 +4,10 @@ import Layout from '../components/layout'
 import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import '../styles/styles.scss'
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { Dispatch } from 'redux';
 import { AppState } from '../store/store';
-import { BasicSearchResult, StellarClass } from '../store/search/search.types';
+import { SearchActionTypes, BasicSearchResult, StellarClass } from '../store/search/search.types';
 import { search } from '../store/search/search.actions';
 
 type Props = {
@@ -15,9 +16,11 @@ type Props = {
 
 const Search = (props: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
-    search(StellarClass.Any, 0, 5);
+    dispatch(search(StellarClass.Any, 0, 5));
   }, []);
+  
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
   const entries = useSelector((state: AppState) => state.search.searchResults);
