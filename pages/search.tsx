@@ -10,6 +10,7 @@ import { AppState } from '../store/store';
 import { SearchActionTypes, BasicSearchResult, StellarClass } from '../store/search/search.types';
 import { search } from '../store/search/search.actions';
 import Link from 'next/link';
+import StarTable from '../components/star-table';
 
 type Props = {
   data: BasicSearchResult[];
@@ -33,7 +34,7 @@ const Search = (props: Props) => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
   const entries = useSelector((state: AppState) => state.search.searchResults);
   return (
-    <Layout>
+    <>
       <Head>
         <title>Search</title>
         <link rel='icon' href='/favicon.ico' />
@@ -81,37 +82,16 @@ const Search = (props: Props) => {
               <Button onClick={() => beginSearch()}>Search</Button>
             </Row>
             <Col md="2"></Col>
-          </Col>       
-          <Col md="8">
-            <table className="starsInfoTable">
-              <thead>
-                <th></th>
-                <th>Distance in Parsecs</th>
-                <th>Star Name</th>
-                <th>Stellar Class</th>
-                <th></th>
-              </thead>
-              <tbody>
-                {
-                  entries ? entries.map((x, index) =>
-                    <tr key={x.pl_name} className="searchEntry">
-                      <td>{index + 1}.</td>
-                      <td>{x.st_dist} Parsecs</td>
-                      <td>{x.pl_hostname}</td>
-                      <td>{x.st_spstr}</td>
-                      <td>
-                        <Link href='/exoplanet/test-planet'>
-                          <a>Details</a>
-                        </Link>
-                      </td>
-                    </tr>) : null
-                }
-              </tbody>
-            </table>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="1" />
+          <Col md="10">
+            <StarTable entries={entries}/>
           </Col>
         </Row>
       </Container>
-    </Layout>
+      </>
   );
 }
 

@@ -10,13 +10,13 @@ const Nav = () => (
         </Link>
       </li>
       <li>
-        <Link href='/search'>
+        <Link href='/search' as='/search'>
           <a>Search</a>
         </Link>
       </li>
       <li>
-        <Link href='/exoplanet/test-planet'>
-          <a>Details</a>
+        <Link href='/stellar-class/[class]' as="/stellar-class/b">
+          <a>Stellar Class B</a>
         </Link>
       </li>
     </ul>

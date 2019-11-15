@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Home = (props: Props) => (
-  <Layout>
+  <>
     <Head>
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
@@ -27,7 +27,7 @@ const Home = (props: Props) => (
         width: 100%;
       }
     `}</style>   
-  </Layout>
+  </>
 )
 
 Home.getInitialProps = async function (): Promise<Props> {
