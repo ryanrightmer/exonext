@@ -1,4 +1,4 @@
-import { BasicSearchResult } from '../store/search/search.types';
+import { BasicSearchResult } from '../types';
 import Link from 'next/link';
 
 type Props = {
@@ -13,6 +13,7 @@ const StarTable = ({ entries }: Props) => {
         <th>Distance in Parsecs</th>
         <th>Star Name</th>
         <th>Stellar Class</th>
+        <th># of Planets</th>
         <th></th>
       </tr>
       {
@@ -22,8 +23,9 @@ const StarTable = ({ entries }: Props) => {
             <td>{x.st_dist} Parsecs</td>
             <td>{x.pl_hostname}</td>
             <td>{x.st_spstr}</td>
+            <td>{x.pl_pnum}</td>
             <td>
-              <Link href='/exoplanet/test-planet'>
+              <Link href={`/stellar-system?name=${x.pl_hostname}`}>
                 <a>Details</a>
               </Link>
             </td>
