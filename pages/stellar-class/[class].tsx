@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head';
 import StarTable from '../../components/star-table';
 import { Container } from 'reactstrap';
-import { useRouter, Router } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import { StellarClass, BasicSearchResult } from '../../store/search/search.types';
 import { exoSearch } from '../../store/search/search.actions';
 
@@ -33,7 +33,7 @@ const StellarClassList = ({ data }: Props) => {
 StellarClassList.getInitialProps = async function ({ isServer, res, query }: any): Promise<Props> {
   
   let sc: StellarClass;
-  // const router = useRouter();
+
   const stellarClass: string = query.class as string;
   switch (stellarClass.toLocaleLowerCase()) {
     case 'a': {
@@ -48,7 +48,7 @@ StellarClassList.getInitialProps = async function ({ isServer, res, query }: any
         })
         res.end()
       } else {
-        const router = useRouter();
+        Router.push('/stellar-class');
       }
       return {data: []};
   }
