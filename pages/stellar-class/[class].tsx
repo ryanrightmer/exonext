@@ -13,7 +13,6 @@ type Props = {
 
 const StellarClassList = ({ data, stellarClass}: Props) => {
   const router = useRouter();
-
   return (
     <>
       <Head>
