@@ -1,8 +1,6 @@
 import React from 'react'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 import Head from 'next/head'
-import Layout from '../components/layout'
-import '../styles/styles.scss'
 import Markdown from 'react-markdown'
 import { Container } from 'reactstrap'
 
@@ -13,7 +11,7 @@ type Props = {
 }
 
 const Home = (props: Props) => (
-  <Layout>
+  <>
     <Head>
       <title>Home</title>
       <link rel='icon' href='/favicon.ico' />
@@ -27,12 +25,12 @@ const Home = (props: Props) => (
         width: 100%;
       }
     `}</style>   
-  </Layout>
+  </>
 )
 
 Home.getInitialProps = async function (): Promise<Props> {
-  const res = await fetch('http://demo2027889.mockable.io/');
-  const data= await res.json();
+  const res = await axios.get('http://demo2027889.mockable.io/');
+  const data= res.data;
 
   return { data };
 };
