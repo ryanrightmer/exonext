@@ -1,10 +1,5 @@
-import {
-  BasicSearchResult,
-  SearchState,
-  SearchActionTypes,
-  SEARCH,
-  StellarClass
-} from "./search.types";
+import { SearchState, SearchActionTypes, SEARCH } from "./search.types";
+import { BasicSearchResult, StellarClass } from "../../types";
 import { stat } from "fs";
 
 export const initialState: SearchState = {

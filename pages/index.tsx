@@ -29,7 +29,7 @@ const Home = (props: Props) => (
 )
 
 Home.getInitialProps = async function (): Promise<Props> {
-  const res = await axios.get('http://demo2027889.mockable.io/');
+  const res = await axios.get('http://demo2027889.mockable.io/home');
   const data= res.data;
 
   return { data };

@@ -3,8 +3,8 @@ import Head from 'next/head';
 import StarTable from '../../components/star-table';
 import { Container } from 'reactstrap';
 import Router, { useRouter } from 'next/router';
-import { StellarClass, BasicSearchResult } from '../../store/search/search.types';
-import { exoSearch } from '../../store/search/search.actions';
+import { StellarClass, BasicSearchResult } from '../../types';
+import { exoSearch } from '../../utils/exoplanet-api-utils';
 
 type Props = {
   data: BasicSearchResult[];
