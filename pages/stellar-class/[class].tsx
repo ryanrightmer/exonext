@@ -8,12 +8,11 @@ import { exoSearch } from '../../store/search/search.actions';
 
 type Props = {
   data: BasicSearchResult[];
+  stellarClass: StellarClass;
 }
 
-const StellarClassList = ({ data }: Props) => {
+const StellarClassList = ({ data, stellarClass}: Props) => {
   const router = useRouter();
-
-  const stellarClass: string = router.query.class as string;
 
   return (
     <>
@@ -23,7 +22,7 @@ const StellarClassList = ({ data }: Props) => {
       </Head>
       
       <Container>
-        <h1>{`There are ${data.length} class ${stellarClass.toUpperCase()} star systems within 100 parsecs`}</h1>
+        <h2>{`There ${data.length === 1 ? "is" : "are"} ${data.length} class ${stellarClass.toUpperCase()} star system${data.length === 1 ? "" : "s"} with exoplanets within 100 parsecs`}</h2>
         <StarTable entries={data} />
       </Container>
     </>
@@ -40,6 +39,30 @@ StellarClassList.getInitialProps = async function ({ isServer, res, query }: any
       sc = StellarClass.A;
       break;
     }
+    case 'b': {
+      sc = StellarClass.B;
+      break;
+    }
+    case 'f': {
+      sc = StellarClass.F;
+      break;
+    }
+    case 'g': {
+      sc = StellarClass.G;
+      break;
+    }
+    case 'k': {
+      sc = StellarClass.K;
+      break;
+    }
+    case 'm': {
+      sc = StellarClass.M;
+      break;
+    }
+    case 'o': {
+      sc = StellarClass.O;
+      break;
+    }
     default:
       console.log("doesn't exist")
       if (isServer) {
@@ -50,11 +73,11 @@ StellarClassList.getInitialProps = async function ({ isServer, res, query }: any
       } else {
         Router.push('/stellar-class');
       }
-      return {data: []};
+      return {data: [], stellarClass: StellarClass.Any};
   }
-  const data = await exoSearch(StellarClass.G, 0, 100);
+  const data = await exoSearch(sc, 0, 100);
 
-  return { data };
+  return { data, stellarClass: sc };
 };
 
 export default StellarClassList;
