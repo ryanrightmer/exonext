@@ -42,74 +42,71 @@ const Search = (props: Props) => {
       
 
       <Container>
-        <Row><p>Search for another world</p></Row>
         <Row>
           <Col md="4" >
-            <Row>
-            <Form inline>
-              <FormGroup inline>
-                <Label for="minDist">Min Distance</Label>
-                <Input type="number" name="email" id="MinDist" placeholder="0" value={minDist} onChange={(e) => setMinDist(Number(e.target.value))}/>
-              </FormGroup>
-              <FormGroup inline>
-                <Label for="exampleEmail">Max Distance</Label>
-                  <Input type="number" name="email" id="maxDist" placeholder="10" value={maxDist} onChange={(e) => setMaxDist(Number(e.target.value))}/>
-              </FormGroup>
-              <FormGroup>
-                <Label>Stellar Class</Label>
-                <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
-                  <DropdownToggle caret>
-                    {stellarClass === StellarClass.Any ? "Any" : stellarClass}
-                    </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.Any)}>Any</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.A)}>{StellarClass.A}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.B)}>{StellarClass.B}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.F)}>{StellarClass.F}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.G)}>{StellarClass.G}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.K)}>{StellarClass.K}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.M)}>{StellarClass.M}</DropdownItem>
-                    <DropdownItem onClick={() => setStellarClass(StellarClass.O)}>{StellarClass.O}</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </FormGroup>
-              
-            </Form>
+            <Row className="searchTools">
+              <h4>
+                Search for another world
+              </h4>
+              <Form inline>
+                <FormGroup inline>
+                  <Label for="minDist">Min Distance: </Label>
+                  <Input type="number" name="email" id="MinDist" placeholder="0" value={minDist} onChange={(e) => setMinDist(Number(e.target.value))}/>
+                </FormGroup>
+                <FormGroup inline>
+                  <Label for="exampleEmail">Max Distance: </Label>
+                    <Input type="number" name="email" id="maxDist" placeholder="10" value={maxDist} onChange={(e) => setMaxDist(Number(e.target.value))}/>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Stellar Class: </Label>
+                  <Dropdown isOpen={dropdownOpen} toggle={toggle} size="sm">
+                    <DropdownToggle caret>
+                      {stellarClass === StellarClass.Any ? "Any" : stellarClass}
+                      </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.Any)}>Any</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.A)}>{StellarClass.A}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.B)}>{StellarClass.B}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.F)}>{StellarClass.F}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.G)}>{StellarClass.G}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.K)}>{StellarClass.K}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.M)}>{StellarClass.M}</DropdownItem>
+                      <DropdownItem onClick={() => setStellarClass(StellarClass.O)}>{StellarClass.O}</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </FormGroup>
+                
+              </Form>
+              <Button onClick={() => beginSearch()}>Search</Button>
             </Row>
-            <Row>
-            <Button onClick={() => beginSearch()}>Search</Button>
-            </Row>
-          
-            
             <Col md="2"></Col>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="1" />
-          <Col md="10">
+          </Col>       
+          <Col md="8">
             <table className="starsInfoTable">
-              <tr>
+              <thead>
                 <th></th>
                 <th>Distance in Parsecs</th>
                 <th>Star Name</th>
                 <th>Stellar Class</th>
                 <th></th>
-              </tr>
-              {
-                entries ? entries.map((x, index) =>
-                  <tr key={x.pl_name} className="searchEntry">
-                    <td>{index + 1}.</td>
-                    <td>{x.st_dist} Parsecs</td>
-                    <td>{x.pl_hostname}</td>
-                    <td>{x.st_spstr}</td>
-                    <td>
-                      <Link href='/exoplanet/test-planet'>
-                        <a>Details</a>
-                      </Link>
-                    </td>
-                  </tr>) : null
-              }
+              </thead>
+              <tbody>
+                {
+                  entries ? entries.map((x, index) =>
+                    <tr key={x.pl_name} className="searchEntry">
+                      <td>{index + 1}.</td>
+                      <td>{x.st_dist} Parsecs</td>
+                      <td>{x.pl_hostname}</td>
+                      <td>{x.st_spstr}</td>
+                      <td>
+                        <Link href='/exoplanet/test-planet'>
+                          <a>Details</a>
+                        </Link>
+                      </td>
+                    </tr>) : null
+                }
+              </tbody>
             </table>
           </Col>
         </Row>
