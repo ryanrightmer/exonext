@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import axios from 'axios'
+import Markdown from 'react-markdown';
 import Layout from '../components/layout'
 import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Label, Form, FormGroup, Input } from 'reactstrap';
 import '../styles/styles.scss'
@@ -14,10 +15,12 @@ import Link from 'next/link';
 import StarTable from '../components/star-table';
 
 type Props = {
-  data: BasicSearchResult[];
+  data?: BasicSearchResult[];
+  cmsContent: string;
 }
 
 const Search = (props: Props) => {
+  console.log(props.cmsContent);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const filter = useSelector((state: AppState) => state.search.filter);
@@ -84,6 +87,7 @@ const Search = (props: Props) => {
             </Row>
           </Col>
           <Col md="8">
+            <Markdown className="searchMarkdown" source={props.cmsContent} escapeHtml={false} />
             <StarTable entries={entries}/>
           </Col>
         </Row>
@@ -92,11 +96,12 @@ const Search = (props: Props) => {
   );
 }
 
-// Search.getInitialProps = async function (): Promise<Props> {
-  
+Search.getInitialProps = async function (): Promise<Props> {
+  const res = await axios.get('http://demo2027889.mockable.io/search');
+  const data = res.data;
+  const { cmsContent } = data;
 
-
-//   // return { data };
-// };
+  return { cmsContent };
+};
 
 export default Search; 

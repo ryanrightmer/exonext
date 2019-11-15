@@ -25,6 +25,7 @@
 }
 .starsInfoTable {
   width: 100%;
+  margin-top: 20px;
   margin-bottom: 40px;
   th {
     background-color: #5b5b5b;
@@ -57,10 +58,12 @@
         margin-right: 10px;
       }
     }
-  }
-  
+  }  
 }
 
+.active-link {
+  color: gray!important;
+}
 .starDetails {
   border: 1px solid gray;
   padding: 20px;
