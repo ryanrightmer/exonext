@@ -16,3 +16,20 @@ export enum StellarClass {
   K = "K",
   M = "M"
 }
+
+export type StellarSystemInformation = {
+  spectralClass: string | null;
+  galacticLongitude: number;
+  galacticLatitude: number;
+  age: number | null;
+  stellarActivity: string | null;
+  luminosity: string | null;
+  distance: number;
+  planets: PlanetInformation[];
+};
+
+export type PlanetInformation = {
+  name: string;
+  orbitalEccentricity: number;
+  mass: number;
+};

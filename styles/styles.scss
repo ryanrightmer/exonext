@@ -22,7 +22,6 @@
 }
 .searchEntry {
   margin: 5px;
-  cursor: pointer;
 }
 .starsInfoTable {
   width: 100%;
@@ -60,4 +59,14 @@
     }
   }
   
+}
+
+.starDetails {
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.image {
+  width:100%;
 }

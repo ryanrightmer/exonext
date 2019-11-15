@@ -1,4 +1,9 @@
-import { BasicSearchResult, StellarClass } from "../types";
+import {
+  BasicSearchResult,
+  StellarClass,
+  StellarSystemInformation,
+  PlanetInformation
+} from "../types";
 import { uniqBy } from "lodash";
 import axios from "axios";
 
@@ -21,4 +26,36 @@ export const exoSearch = async (
 
   const data = uniqBy(res.data as BasicSearchResult[], x => x.pl_hostname);
   return data;
+};
+
+export const getStarInfo = async (
+  name: string
+): Promise<StellarSystemInformation> => {
+  const columns =
+    "&select=pl_name,st_spstr,st_glon,st_glat,st_age,st_acts,st_lum,st_dist,pl_orbeccen,pl_bmassj";
+  const filter = `&where=pl_hostname like '${name}'`;
+  const order = "&order=pl_name";
+  const searchUrl = `${baseUrl}${columns}${encodeURI(filter)}${order}`;
+  const res = await axios.get(searchUrl);
+  const data = res.data as any[];
+
+  const planetInfo: PlanetInformation[] = data.map(x => ({
+    name: x.pl_name,
+    orbitalEccentricity: x.pl_orbeccen,
+    mass: x.pl_bmassj
+  }));
+
+  const first = data[0];
+  const systemInfo: StellarSystemInformation = {
+    spectralClass: first.st_spstr,
+    galacticLatitude: first.st_glat,
+    galacticLongitude: first.st_glon,
+    age: first.st_age,
+    stellarActivity: first.st_acts,
+    luminosity: first.st_lum,
+    distance: first.st_dist,
+    planets: planetInfo
+  };
+  console.log(searchUrl, data);
+  return systemInfo;
 };
