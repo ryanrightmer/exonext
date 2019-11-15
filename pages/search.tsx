@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 import Layout from '../components/layout'
 import { Button, Col, Container, Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Label, Form, FormGroup, Input } from 'reactstrap';
 import '../styles/styles.scss'
@@ -81,12 +81,8 @@ const Search = (props: Props) => {
               </Form>
               <Button onClick={() => beginSearch()}>Search</Button>
             </Row>
-            <Col md="2"></Col>
           </Col>
-        </Row>
-        <Row>
-          <Col md="1" />
-          <Col md="10">
+          <Col md="8">
             <StarTable entries={entries}/>
           </Col>
         </Row>
@@ -102,4 +98,4 @@ const Search = (props: Props) => {
 //   // return { data };
 // };
 
-export default Search;
+export default Search; 

@@ -1,8 +1,6 @@
 import React from 'react'
-import fetch from 'isomorphic-unfetch'
+import axios from 'axios'
 import Head from 'next/head'
-import Layout from '../components/layout'
-import '../styles/styles.scss'
 import Markdown from 'react-markdown'
 import { Container } from 'reactstrap'
 
@@ -31,8 +29,8 @@ const Home = (props: Props) => (
 )
 
 Home.getInitialProps = async function (): Promise<Props> {
-  const res = await fetch('http://demo2027889.mockable.io/');
-  const data= await res.json();
+  const res = await axios.get('http://demo2027889.mockable.io/');
+  const data= res.data;
 
   return { data };
 };
