@@ -20,7 +20,7 @@ const StellarClassList = ({ data, stellarClass}: Props) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       
-      <Container>
+      <Container className="hero">
         <h2>{`There ${data.length === 1 ? "is" : "are"} ${data.length} class ${stellarClass.toUpperCase()} star system${data.length === 1 ? "" : "s"} with exoplanets within 100 parsecs`}</h2>
         <StarTable entries={data} />
       </Container>

@@ -23,7 +23,7 @@ const StellarSystem = ({ data }: Props) => {
   console.log(data);
 
   return (
-    <Container>
+    <Container className="hero">
       <Row className="mb-3">
         <Button onClick={() => router.push('/search')}>{'\<'} Back to Search</Button>
         <Col className="text-center">

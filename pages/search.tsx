@@ -46,7 +46,7 @@ const Search = (props: Props) => {
 
       
 
-      <Container>
+      <Container className="hero">
         <Row>
           <Col md="4" >
             <Row className="searchTools">
