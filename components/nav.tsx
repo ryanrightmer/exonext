@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 const Nav = () => {
   const router = useRouter();
   const handleChange = (e: String) => {
-    window.location.href = `/stellar-class/${e}`;
+    window.location.href = e === 'home' ? '/' : `/stellar-class/${e}`;
   }
   return (
     <nav>
@@ -29,6 +29,7 @@ const Nav = () => {
             value={router.query.class}
             onChange={(e) => handleChange(String(e.target.value))}
           >
+            <option value="home"></option>
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="F">F</option>
