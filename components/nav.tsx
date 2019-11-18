@@ -5,13 +5,13 @@ import { useRouter } from 'next/router';
 const Nav = () => {
   const router = useRouter();
   const handleChange = (e: String) => {
-    window.location.href = e === 'home' ? '/' : `/stellar-class/${e}`;
+    router.push(e === 'home' ? '/' : `/stellar-class/${e}`);
   }
   return (
     <nav>
       <ul>
         <li>
-          <Link href='/'>
+          <Link href='/' as='/index'>
             <a className={`${router.asPath === "/" ? 'active-link' : ''}`}>Home</a>
           </Link>
         </li>
