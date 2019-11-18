@@ -44,7 +44,7 @@ export const getStarInfo = async (
     orbitalEccentricity: x.pl_orbeccen,
     mass: x.pl_bmassj
   }));
-
+  console.log(searchUrl);
   const first = data[0];
   const systemInfo: StellarSystemInformation = {
     spectralClass: first.st_spstr,

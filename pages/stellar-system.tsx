@@ -20,11 +20,12 @@ type Props = {
 const StellarSystem = ({ data }: Props) => {
   const router = useRouter();
   const { name } = router.query;
+  console.log(data);
 
   return (
     <Container>
       <Row className="mb-3">
-        <Button>Back</Button>
+        <Button onClick={() => router.push('/search')}>{'\<'} Back to Search</Button>
         <Col className="text-center">
           <h1>{name}</h1>
         </Col>
@@ -79,6 +80,7 @@ StellarSystem.getInitialProps = async function({
   query
 }: any): Promise<Props> {
   const starName: string = query.name as string;
+  console.log('Stellar System');
 
   return { data: await getStarInfo(starName) };
 };
