@@ -8,7 +8,7 @@ type Props = {
 
 const PlanetInfo = ({ info }: Props) => {
   return (
-    <Card body className="mb-2">
+    <Card body className="mb-5">
       <CardTitle>{info.name}</CardTitle>
       <CardText>
         <table className="starsInfoTable">
