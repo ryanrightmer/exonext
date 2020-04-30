@@ -21,7 +21,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "express": "^4.17.1",
     "formik": "^2.0.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "lru-cache": "^5.1.1",
     "next": "9.1.3",
