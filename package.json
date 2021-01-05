@@ -15,7 +15,7 @@
     "@types/lru-cache": "^5.1.0",
     "@types/reactstrap": "^8.0.6",
     "@zeit/next-sass": "^1.0.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "cacheable-response": "^1.9.0",
     "enzyme-adapter-react-16": "^1.15.1",
